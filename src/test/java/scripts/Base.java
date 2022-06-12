@@ -1,6 +1,7 @@
 package scripts;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,6 +22,7 @@ public class Base {
     SoftAssert softAssert;
     UnitedAirlineHomePage unitedAirlineHomePage;
     UnitedAirlineFlightPage unitedAirlineFlightPage;
+    Actions actions;
 
     @BeforeMethod
     public void setup(){
@@ -30,6 +32,7 @@ public class Base {
         softAssert = new SoftAssert();
         unitedAirlineHomePage = new UnitedAirlineHomePage(driver);
         unitedAirlineFlightPage = new UnitedAirlineFlightPage(driver);
+        actions = new Actions(driver);
     }
 
     @AfterMethod

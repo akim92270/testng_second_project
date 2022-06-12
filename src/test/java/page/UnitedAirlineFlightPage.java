@@ -11,6 +11,6 @@ public class UnitedAirlineFlightPage {
         PageFactory.initElements(driver,this);
     }
 
-    @FindBy(css = "div[class='app-components-Shopping-TripInfo-styles__tripOriginDestinationHeader--RcPyp'] span")
+    @FindBy(css = "h2")
     public WebElement verify;
 }

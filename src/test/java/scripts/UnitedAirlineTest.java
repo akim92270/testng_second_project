@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import utilities.Waiter;
 
 public class UnitedAirlineTest extends Base{
 
@@ -60,15 +61,15 @@ public class UnitedAirlineTest extends Base{
     @Test(priority = 3, description = "Test Case 3: Validate Round-trip and One-way radio buttons")
     public void testRoundTripAndOneWayRadioButtons(){
         driver.get("https://www.united.com/en/us");
-        for (int i = 0; i < unitedAirlineHomePage.roundTripOneWayRadioButton.size(); i++) {
-            Assert.assertTrue(unitedAirlineHomePage.roundTripOneWayRadioButton.get(i).isDisplayed(), "Roundtrip / One-way is not displayed"); //RoundTrip is displayed
-            Assert.assertTrue(unitedAirlineHomePage.roundTripOneWayRadioButton.get(i).isEnabled(), "Roundtrip / One-way is not enabled"); //RoundTrip is enabled
-            //Assert.assertTrue(unitedAirlineHomePage.roundTripButton.isSelected(),"Roundtrip is not selected"); //RoundTrip is selected [not sure why it's failing]
-            //Assert.assertTrue(!unitedAirlineHomePage.oneWayButton.isSelected(), "One-way is not selected"); //One-way is selected
-            unitedAirlineHomePage.roundTripOneWayRadioButton.get(1).click();
-            //Assert.assertTrue(unitedAirlineHomePage.roundTripOneWayRadioButton.get(1).isSelected());
-            //Assert.assertFalse(unitedAirlineHomePage.roundTripOneWayRadioButton.get(1).isSelected());
-        }
+
+            Assert.assertTrue(unitedAirlineHomePage.roundTripLabel.isDisplayed(), "Roundtrip is not displayed"); //RoundTrip is displayed
+            Assert.assertTrue(unitedAirlineHomePage.roundTripInput.isEnabled(), "Roundtrip is not enabled"); //RoundTrip is enabled
+            Assert.assertTrue(unitedAirlineHomePage.roundTripInput.isSelected(),"Roundtrip is not selected"); //RoundTrip is selected [not sure why it's failing]
+            Assert.assertFalse(unitedAirlineHomePage.oneWayButton.isSelected(), "One-way is not selected"); //One-way is selected
+            unitedAirlineHomePage.oneWayButton.click();
+            Assert.assertTrue(unitedAirlineHomePage.oneWayButton.isSelected());
+            Assert.assertFalse(unitedAirlineHomePage.roundTripInput.isSelected());
+
 
     }
 
@@ -111,10 +112,19 @@ public class UnitedAirlineTest extends Base{
     @Test(priority = 5, description = "Test Case 5: Validate One-way ticket search results from Chicago, IL, US (ORD) to Miami, FL, US (MIA)")
     public void testOneWayTicketSearch(){
         driver.get("https://www.united.com/en/us");
+        unitedAirlineHomePage.oneWayButton.click();
         unitedAirlineHomePage.fromInputBox.clear();
         unitedAirlineHomePage.fromInputBox.sendKeys("Chicago, IL, US (ORD)");
-        unitedAirlineHomePage.fromConfirmation.sendKeys(Keys.ENTER);
-
-
+        unitedAirlineHomePage.toInputBox.click();
+        unitedAirlineHomePage.toInputBox.sendKeys("Miami, FL, US (MIA)");
+        unitedAirlineHomePage.dayInputBox.click();
+        unitedAirlineHomePage.dayInputBox.clear();
+        unitedAirlineHomePage.dayInputBox.sendKeys("Jan 30");
+        unitedAirlineHomePage.travelerSelector.click();
+        unitedAirlineHomePage.plusButton.click();
+        unitedAirlineHomePage.cabinTypeDropdownMenu.click();
+        unitedAirlineHomePage.businessFlight.click();
+        unitedAirlineHomePage.findFlightsButton.click();
+        Assert.assertEquals(unitedAirlineFlightPage.verify.getText(),"Depart: Chicago, IL, US to Miami, FL, US");
     }
 }

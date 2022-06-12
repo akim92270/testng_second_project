@@ -21,13 +21,13 @@ public class UnitedAirlineHomePage {
     @FindBy(id = "oneway")
     public WebElement oneWayButton;
 
+    @FindBy(css = "label[for='roundtrip']")
+    public WebElement roundTripLabel;
+
     @FindBy(id = "roundtrip")
-    public WebElement roundTripButton;
+    public WebElement roundTripInput;
 
-    @FindBy(css = ".app-components-BookFlightForm-bookFlightForm__radioContainer--3WXQM label")
-    public List<WebElement> roundTripOneWayRadioButton;
-
-    @FindBy(css = "label[for='award']")
+    @FindBy(css = "input[name='AwardTravel']")
     public WebElement bookWithMilesInputBox;
 
     @FindBy(css = "label[for='award']>span")
@@ -42,27 +42,25 @@ public class UnitedAirlineHomePage {
     @FindBy(id = "bookFlightOriginInput")
     public WebElement fromInputBox;
 
-    @FindBy(css = "li[id='autocomplete-item-0']>button")
-    public WebElement fromConfirmation;
-
     @FindBy(id = "bookFlightDestinationInput")
     public WebElement toInputBox;
 
-    @FindBy(css = "li[id='autocomplete-item-1']>button")
-    public WebElement toConfirmation;
-
-    @FindBy(css = "button[id='flexMonth']")
-    public WebElement monthInputBox;
-
-    @FindBy(id = "button[id='flexDay']")
+    @FindBy(css = "input[id='DepartDate']")
     public WebElement dayInputBox;
 
-    @FindBy(id = "bookFlightOriginInput")
-    public WebElement travelerSelector;  //input[value='2'] get attribute?
+    @FindBy(css = "div[id='passengerSelector']>button")
+    public WebElement travelerSelector;
 
-    @FindBy(css = "ul[aria-activedescendant='cabinType_item-3']>li")
-    public List<WebElement> cabinDropdown;
+    @FindBy(css = "button[aria-label='Substract one Adult']")
+    public WebElement plusButton;
+
+    @FindBy(css = "li[id='cabinType_item-2']")
+    public WebElement businessFlight;
+
+    @FindBy(css = "button[class*='app-components-ListBox-ListBox']")
+    public WebElement cabinTypeDropdownMenu;
 
     @FindBy(css = "button[type='submit']")
-    public List<WebElement> findFlightsButton;
+    public WebElement findFlightsButton;
+
 }
