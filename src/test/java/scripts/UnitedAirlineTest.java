@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import utilities.Waiter;
 
-public class UnitedAirlineTest extends Base{
+public class UnitedAirlineTest extends Base {
 
     /*
     Test Case 1: Validate "Main menu" navigation items
@@ -23,7 +23,7 @@ public class UnitedAirlineTest extends Base{
     */
 
     @Test(priority = 1, description = "Test Case 1: Validate Main menu navigation items")
-    public void testMainMenu(){
+    public void testMainMenu() {
         driver.get("https://www.united.com/en/us"); //go to url;
         String[] actual = {"BOOK", "MY TRIPS", "TRAVEL INFO", "MILEAGEPLUS® PROGRAM", "DEALS", "HELP"}; //used for comparison
         for (int i = 0; i < unitedAirlineHomePage.mainMenu.size(); i++) {
@@ -42,7 +42,7 @@ public class UnitedAirlineTest extends Base{
     |My trips        |*/
 
     @Test(priority = 2, description = "Test Case 2: Validate Book travel menu navigation items")
-    public void testBookTravelMenu(){
+    public void testBookTravelMenu() {
         driver.get("https://www.united.com/en/us");
         String[] actual = {"Book", "Flight status", "Check-in", "My trips"};
         for (int i = 0; i < unitedAirlineHomePage.bookTravelMenu.size(); i++) {
@@ -59,16 +59,18 @@ public class UnitedAirlineTest extends Base{
     Then validate "One-way" radio button is selected while "Roundtrip" radio button is deselected*/
 
     @Test(priority = 3, description = "Test Case 3: Validate Round-trip and One-way radio buttons")
-    public void testRoundTripAndOneWayRadioButtons(){
+    public void testRoundTripAndOneWayRadioButtons() {
         driver.get("https://www.united.com/en/us");
 
-            Assert.assertTrue(unitedAirlineHomePage.roundTripLabel.isDisplayed(), "Roundtrip is not displayed"); //RoundTrip is displayed
-            Assert.assertTrue(unitedAirlineHomePage.roundTripInput.isEnabled(), "Roundtrip is not enabled"); //RoundTrip is enabled
-            Assert.assertTrue(unitedAirlineHomePage.roundTripInput.isSelected(),"Roundtrip is not selected"); //RoundTrip is selected [not sure why it's failing]
-            Assert.assertFalse(unitedAirlineHomePage.oneWayButton.isSelected(), "One-way is not selected"); //One-way is selected
-            unitedAirlineHomePage.oneWayButton.click();
-            Assert.assertTrue(unitedAirlineHomePage.oneWayButton.isSelected());
-            Assert.assertFalse(unitedAirlineHomePage.roundTripInput.isSelected());
+        Assert.assertTrue(unitedAirlineHomePage.roundTripLabel.isDisplayed(), "Roundtrip is not displayed"); //RoundTrip is displayed
+        Assert.assertTrue(unitedAirlineHomePage.roundTripInput.isEnabled(), "Roundtrip is not enabled"); //RoundTrip is enabled
+        Assert.assertTrue(unitedAirlineHomePage.roundTripInput.isSelected(), "Roundtrip is not selected"); //RoundTrip is selected [not sure why it's failing]
+        Assert.assertTrue(unitedAirlineHomePage.oneWayLabel.isDisplayed(), "Oneway is not displayed"); //Oneway is displayed
+        Assert.assertTrue(unitedAirlineHomePage.oneWayLabel.isEnabled(), "Oneway is not enabled"); //RoundTrip is enabled
+        Assert.assertFalse(unitedAirlineHomePage.oneWayButton.isSelected(), "One-way is not selected"); //One-way is selected
+        unitedAirlineHomePage.oneWayButton.click();
+        Assert.assertTrue(unitedAirlineHomePage.oneWayButton.isSelected());
+        Assert.assertFalse(unitedAirlineHomePage.roundTripInput.isSelected());
 
 
     }
@@ -83,13 +85,14 @@ public class UnitedAirlineTest extends Base{
     Then validate both checkboxes are deselected*/
 
     @Test(priority = 4, description = "Test Case 4: Validate Book with miles and Flexible dates checkboxes")
-    public void testBookWithMilesAndFlexibleDatesCheckbox(){
+    public void testBookWithMilesAndFlexibleDatesCheckbox() {
         driver.get("https://www.united.com/en/us");
         Assert.assertTrue(unitedAirlineHomePage.bookWithMilesCheckBox.isDisplayed(), "Book with miles is not displayed");
         Assert.assertTrue(unitedAirlineHomePage.bookWithMilesCheckBox.isEnabled(), "Book with miles is not enabled");
         Assert.assertFalse(unitedAirlineHomePage.bookWithMilesCheckBox.isSelected(), "Book with miles is selected");
         Assert.assertTrue(unitedAirlineHomePage.flexibleDatesCheckBox.isDisplayed(), "Flexible date is not displayed");
         Assert.assertTrue(unitedAirlineHomePage.flexibleDatesCheckBox.isEnabled(), "Flexible date is not enabled");
+        Assert.assertFalse(unitedAirlineHomePage.flexibleDatesCheckBox.isSelected(), "Book with miles is selected");
         unitedAirlineHomePage.bookWithMilesCheckBox.click();
         unitedAirlineHomePage.flexibleDatesCheckBox.click();
         Assert.assertTrue(unitedAirlineHomePage.bookWithMilesInputBox.isSelected(), "Flexible date is not selected");
@@ -99,6 +102,7 @@ public class UnitedAirlineTest extends Base{
         Assert.assertFalse(unitedAirlineHomePage.bookWithMilesInputBox.isSelected(), "Flexible date is selected");
         Assert.assertFalse(unitedAirlineHomePage.flexibleDateInputBox.isSelected(), "Flexible date is selected");
     }
+
     /*Test Case 5: Validate One-way ticket search results "from Chicago, IL, US (ORD) to Miami, FL, US (MIA)”
     Given user is on "https://www.united.com/en/us"
     When user selects "One-way" ticket radio button
@@ -110,7 +114,7 @@ public class UnitedAirlineTest extends Base{
     And user clicks on "Find Flights" button
     Then validate departure equals to "Depart: Chicago, IL, US to Miami, FL, US*/
     @Test(priority = 5, description = "Test Case 5: Validate One-way ticket search results from Chicago, IL, US (ORD) to Miami, FL, US (MIA)")
-    public void testOneWayTicketSearch(){
+    public void testOneWayTicketSearch() {
         driver.get("https://www.united.com/en/us");
         unitedAirlineHomePage.oneWayButton.click();
         unitedAirlineHomePage.fromInputBox.clear();
@@ -125,6 +129,6 @@ public class UnitedAirlineTest extends Base{
         unitedAirlineHomePage.cabinTypeDropdownMenu.click();
         unitedAirlineHomePage.businessFlight.click();
         unitedAirlineHomePage.findFlightsButton.click();
-        Assert.assertEquals(unitedAirlineFlightPage.verify.getText(),"Depart: Chicago, IL, US to Miami, FL, US");
+        Assert.assertEquals(unitedAirlineFlightPage.verify.getText(), "Depart: Chicago, IL, US to Miami, FL, US");
     }
 }

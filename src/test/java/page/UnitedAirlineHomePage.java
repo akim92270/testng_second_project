@@ -15,11 +15,14 @@ public class UnitedAirlineHomePage {
     @FindBy(css = "a[id^='headerNav']")
     public List<WebElement> mainMenu;
 
-    @FindBy(css = ".app-components-BookTravel-bookTravel__travelNav--3RNBj li")
+    @FindBy(css = "ul[class*='BookTravel-bookTravel li")
     public List<WebElement> bookTravelMenu;
 
     @FindBy(id = "oneway")
     public WebElement oneWayButton;
+
+    @FindBy(css = "label[for='roundtrip']")
+    public WebElement oneWayLabel;
 
     @FindBy(css = "label[for='roundtrip']")
     public WebElement roundTripLabel;
