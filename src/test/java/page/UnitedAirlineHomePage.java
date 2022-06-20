@@ -66,4 +66,7 @@ public class UnitedAirlineHomePage {
     @FindBy(css = "button[type='submit']")
     public WebElement findFlightsButton;
 
+    @FindBy(css = "ul[class*='BookTravel-bookTravel'] li")
+    public List<WebElement> bookTravelTabs;
+
 }

@@ -131,4 +131,13 @@ public class UnitedAirlineTest extends Base {
         unitedAirlineHomePage.findFlightsButton.click();
         Assert.assertEquals(unitedAirlineFlightPage.verify.getText(), "Depart: Chicago, IL, US to Miami, FL, US");
     }
+    
+    @Test(priority = 6, description = "Test")
+    public void testBookTabs(){
+        driver.get("https://www.united.com/en/us");
+        for (int i = 0; i < unitedAirlineHomePage.bookTravelTabs.size(); i++) {
+            System.out.println(unitedAirlineHomePage.bookTravelTabs.get(i).getText());
+        }
+    }
+            
 }
